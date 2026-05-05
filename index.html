@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Canberra Web Co — Websites for local Canberra businesses</title>
+<meta name="description" content="Affordable, beautifully built websites for cafes, tradies, salons and gyms in Canberra. Free demo before you commit. Built locally by an independent developer." />
+<meta name="theme-color" content="#0B0B0B" />
+<meta property="og:title" content="Canberra Web Co — Websites for local businesses" />
+<meta property="og:description" content="Free demo website for your business — see it before you pay a cent. Made in Canberra." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230B0B0B'/%3E%3Ctext x='50' y='66' text-anchor='middle' font-family='Georgia,serif' font-size='58' fill='%23FF5B14' font-style='italic'%3Ec%3C/text%3E%3C/svg%3E" />
+<style>
+  :root{
+    --bg:#0B0B0B;
+    --bg-2:#111111;
+    --paper:#F4EFE6;
+    --paper-2:#E9E2D3;
+    --ink:#0B0B0B;
+    --fg:#F4EFE6;
+    --muted:#9A9388;
+    --line:rgba(244,239,230,.14);
+    --line-strong:rgba(244,239,230,.28);
+    --accent:#FF5B14;
+    --accent-soft:#FF8A4C;
+    --grid: 1100px;
+    --ease: cubic-bezier(.2,.7,.15,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  html,body{background:var(--bg);color:var(--fg)}
+  body{
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;
+    font-size:16px;line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+  img,svg{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+  ::selection{background:var(--accent);color:#fff}
+
+  .wrap{max-width:var(--grid);margin:0 auto;padding:0 24px}
+  .mono{font-family:'JetBrains Mono',ui-monospace,monospace;letter-spacing:.02em;font-size:12px;text-transform:uppercase}
+  .serif{font-family:'Instrument Serif',Georgia,serif;font-weight:400;letter-spacing:-.01em}
+  .italic{font-style:italic}
+
+  /* ── NAV ─────────────────────────────────────────────── */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;
+    backdrop-filter:saturate(140%) blur(10px);
+    -webkit-backdrop-filter:saturate(140%) blur(10px);
+    background:rgba(11,11,11,.55);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s var(--ease), background .3s var(--ease);
+  }
+  .nav.scrolled{border-bottom-color:var(--line);background:rgba(11,11,11,.85)}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:-.01em}
+  .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(255,91,20,.18)}
+  .brand b{font-family:'Instrument Serif',serif;font-weight:400;font-size:22px;font-style:italic}
+  .brand small{color:var(--muted);font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+  .nav-links{display:none;gap:28px}
+  .nav-links a{color:var(--muted);font-size:14px;transition:color .2s}
+  .nav-links a:hover{color:var(--fg)}
+  .nav-cta{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:1px solid var(--line-strong);border-radius:999px;font-size:13px;transition:all .25s var(--ease)}
+  .nav-cta:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+  .nav-cta .arr{transition:transform .25s var(--ease)}
+  .nav-cta:hover .arr{transform:translateX(3px)}
+  @media(min-width:860px){.nav-links{display:flex}}
+
+  /* ── HERO ────────────────────────────────────────────── */
+  .hero{
+    min-height:100vh;min-height:100svh;
+    position:relative;display:flex;flex-direction:column;justify-content:flex-end;
+    padding:120px 0 56px;
+    overflow:hidden;
+  }
+  .hero .glow{
+    position:absolute;inset:auto;width:140vmax;height:140vmax;left:-30vmax;top:-50vmax;
+    background:radial-gradient(closest-side, rgba(255,91,20,.55), rgba(255,91,20,.08) 40%, transparent 70%);
+    filter:blur(40px);pointer-events:none;
+    animation:drift 22s ease-in-out infinite alternate;
+  }
+  .hero .glow.b{
+    left:auto;right:-40vmax;top:-20vmax;
+    background:radial-gradient(closest-side, rgba(80,140,255,.28), transparent 65%);
+    animation-duration:30s;animation-delay:-8s;
+  }
+  @keyframes drift{
+    0%{transform:translate3d(0,0,0) scale(1)}
+    100%{transform:translate3d(6vmax,4vmax,0) scale(1.08)}
+  }
+  .hero-meta{display:flex;justify-content:space-between;align-items:end;gap:24px;color:var(--muted);margin-bottom:28px;flex-wrap:wrap}
+  .hero-meta .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border:1px solid var(--line-strong);border-radius:999px;color:var(--fg)}
+  .hero-meta .pill .live{width:7px;height:7px;background:#7CE38B;border-radius:50%;box-shadow:0 0 0 4px rgba(124,227,139,.18);animation:pulse 1.6s ease-in-out infinite}
+  @keyframes pulse{50%{box-shadow:0 0 0 7px rgba(124,227,139,0)}}
+  .hero h1{
+    font-family:'Instrument Serif',Georgia,serif;
+    font-weight:400;
+    font-size:clamp(56px, 13.5vw, 220px);
+    line-height:.88;letter-spacing:-.025em;
+    margin:0;
+  }
+  .hero h1 .it{font-style:italic;color:var(--accent)}
+  .hero h1 .word{display:inline-block;overflow:hidden;vertical-align:bottom}
+  .hero h1 .word > span{display:inline-block;transform:translateY(110%);transition:transform 1s var(--ease)}
+  .hero.in h1 .word > span{transform:translateY(0)}
+  .hero h1 .word:nth-child(2) > span{transition-delay:.08s}
+  .hero h1 .word:nth-child(3) > span{transition-delay:.16s}
+  .hero h1 .word:nth-child(4) > span{transition-delay:.24s}
+  .hero h1 .word:nth-child(5) > span{transition-delay:.32s}
+
+  .hero-bottom{
+    margin-top:52px;display:grid;grid-template-columns:1fr;gap:32px;align-items:end;
+  }
+  @media(min-width:860px){.hero-bottom{grid-template-columns:1.1fr .9fr}}
+  .hero-sub{font-size:clamp(17px,1.6vw,22px);line-height:1.4;color:var(--paper-2);max-width:42ch}
+  .hero-sub b{font-weight:600;color:var(--fg)}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;padding:18px 26px;border-radius:999px;
+    font-weight:500;font-size:15px;letter-spacing:-.005em;
+    transition:transform .25s var(--ease), background .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease);
+    will-change:transform;
+  }
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-primary:hover{transform:translateY(-2px);background:#ff7034}
+  .btn-ghost{border:1px solid var(--line-strong);color:var(--fg)}
+  .btn-ghost:hover{border-color:var(--fg);background:var(--fg);color:var(--ink)}
+  .btn .arr{display:inline-block;transition:transform .25s var(--ease)}
+  .btn:hover .arr{transform:translate(3px,-3px)}
+
+  /* ── MARQUEE / TRUST STRIP ──────────────────────────── */
+  .strip{
+    border-block:1px solid var(--line);
+    overflow:hidden;
+    background:var(--bg-2);
+    padding:18px 0;
+  }
+  .marquee{display:flex;gap:48px;white-space:nowrap;width:max-content;animation:marq 38s linear infinite}
+  .marquee span{font-family:'Instrument Serif',serif;font-size:22px;color:var(--paper-2);display:inline-flex;align-items:center;gap:48px}
+  .marquee span::after{content:"✦";color:var(--accent);font-size:14px;margin-left:48px}
+  @keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ── SECTIONS ───────────────────────────────────────── */
+  section{padding:clamp(72px,10vw,140px) 0;position:relative}
+  .label{display:flex;align-items:center;gap:12px;color:var(--muted);margin-bottom:36px}
+  .label::before{content:"";width:8px;height:8px;background:var(--accent);border-radius:50%}
+  .label .num{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+  h2{
+    font-family:'Instrument Serif',Georgia,serif;font-weight:400;
+    font-size:clamp(40px,6.5vw,88px);line-height:.96;letter-spacing:-.02em;
+    max-width:18ch;
+  }
+  h2 .it{font-style:italic;color:var(--accent)}
+  h3{font-size:22px;font-weight:500;letter-spacing:-.01em;margin-bottom:8px}
+  p{color:var(--paper-2);max-width:60ch}
+
+  /* Reveal animation */
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .9s var(--ease), transform .9s var(--ease)}
+  .reveal.in{opacity:1;transform:translateY(0)}
+  .reveal.d1{transition-delay:.06s}
+  .reveal.d2{transition-delay:.12s}
+  .reveal.d3{transition-delay:.18s}
+  .reveal.d4{transition-delay:.24s}
+
+  /* ── WHY / VALUE ────────────────────────────────────── */
+  .why{display:grid;grid-template-columns:1fr;gap:48px;margin-top:56px}
+  @media(min-width:860px){.why{grid-template-columns:1fr 1fr}}
+  .why-list{display:grid;gap:0;border-top:1px solid var(--line)}
+  .why-item{padding:28px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:36px 1fr;gap:20px;align-items:start;transition:padding-left .35s var(--ease)}
+  .why-item:hover{padding-left:8px}
+  .why-item .n{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);padding-top:6px}
+  .why-item h3{margin-bottom:6px}
+  .why-item p{color:var(--muted)}
+
+  /* ── DELIVERABLES / WHAT YOU GET ────────────────────── */
+  .deliv{display:grid;grid-template-columns:1fr;gap:18px;margin-top:48px}
+  @media(min-width:720px){.deliv{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:1000px){.deliv{grid-template-columns:repeat(3,1fr)}}
+  .card{
+    border:1px solid var(--line);
+    border-radius:18px;padding:28px;
+    background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+    transition:transform .4s var(--ease), border-color .3s, background .3s;
+    position:relative;overflow:hidden;
+  }
+  .card:hover{transform:translateY(-4px);border-color:var(--line-strong);background:linear-gradient(180deg, rgba(255,91,20,.06), rgba(255,255,255,0))}
+  .card .ic{
+    width:42px;height:42px;border-radius:12px;display:grid;place-items:center;
+    background:rgba(255,91,20,.12);color:var(--accent);margin-bottom:18px;
+    border:1px solid rgba(255,91,20,.25);
+  }
+  .card h3{margin-bottom:8px}
+  .card p{font-size:15px;color:var(--muted)}
+
+  /* ── PORTFOLIO ──────────────────────────────────────── */
+  .work-grid{display:grid;grid-template-columns:1fr;gap:24px;margin-top:56px}
+  @media(min-width:780px){.work-grid{grid-template-columns:repeat(2,1fr)}}
+  .work{
+    position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);
+    background:var(--bg-2);aspect-ratio: 4/3;
+    cursor:pointer;
+  }
+  .work img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease), filter .6s}
+  .work:hover img{transform:scale(1.05);filter:brightness(.7)}
+  .work .meta{
+    position:absolute;inset:auto 0 0 0;padding:24px;display:flex;justify-content:space-between;align-items:end;gap:16px;
+    background:linear-gradient(180deg, transparent, rgba(0,0,0,.85));
+    color:var(--fg);
+  }
+  .work .tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--paper-2);letter-spacing:.08em;text-transform:uppercase}
+  .work h3{font-family:'Instrument Serif',serif;font-weight:400;font-size:28px;letter-spacing:-.01em}
+  .work .demo-badge{
+    position:absolute;top:18px;left:18px;
+    font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+    padding:6px 10px;border-radius:999px;background:rgba(0,0,0,.55);border:1px solid var(--line-strong);color:var(--paper-2);
+    backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  }
+  .work-tall{grid-column:span 1}
+  @media(min-width:780px){
+    .work-tall{aspect-ratio:3/4;grid-row:span 2}
+    .work:nth-child(2){aspect-ratio:4/3}
+    .work:nth-child(3){aspect-ratio:4/3}
+  }
+
+  /* ── PROCESS ────────────────────────────────────────── */
+  .process{display:grid;grid-template-columns:1fr;gap:20px;margin-top:56px;counter-reset:step}
+  @media(min-width:860px){.process{grid-template-columns:repeat(3,1fr)}}
+  .step{
+    border-top:1px solid var(--line-strong);padding-top:28px;position:relative;
+  }
+  .step::before{
+    counter-increment:step;content:"0" counter(step);
+    font-family:'Instrument Serif',serif;font-style:italic;font-size:64px;color:var(--accent);
+    line-height:1;display:block;margin-bottom:18px;
+  }
+  .step h3{font-family:'Instrument Serif',serif;font-weight:400;font-size:30px;letter-spacing:-.01em;margin-bottom:8px}
+  .step p{color:var(--muted)}
+
+  /* ── BIG CTA ────────────────────────────────────────── */
+  .bigcta{
+    background:var(--paper);color:var(--ink);
+    border-radius:28px;padding:clamp(48px,8vw,96px);
+    margin:80px 0;
+    position:relative;overflow:hidden;
+  }
+  .bigcta h2{color:var(--ink);max-width:20ch}
+  .bigcta h2 .it{color:var(--accent)}
+  .bigcta p{color:#3a3a3a;margin-top:18px;max-width:50ch;font-size:18px}
+  .bigcta .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px;align-items:center}
+  .bigcta .btn-primary{background:var(--ink);color:var(--paper)}
+  .bigcta .btn-primary:hover{background:var(--accent);color:#fff}
+  .bigcta .btn-ghost{border-color:rgba(0,0,0,.18);color:var(--ink)}
+  .bigcta .btn-ghost:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .bigcta .stamp{
+    position:absolute;right:-20px;top:-20px;width:200px;height:200px;
+    border-radius:50%;border:1px dashed rgba(0,0,0,.35);
+    display:none;align-items:center;justify-content:center;
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);
+    animation:spin 28s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @media(min-width:900px){.bigcta .stamp{display:flex}}
+
+  /* ── CONTACT ────────────────────────────────────────── */
+  .contact-grid{display:grid;grid-template-columns:1fr;gap:48px;margin-top:56px}
+  @media(min-width:860px){.contact-grid{grid-template-columns:1fr 1fr}}
+  .contact-side h2{font-size:clamp(36px,5vw,64px)}
+  .contact-channels{display:grid;gap:14px;margin-top:32px}
+  .channel{
+    display:flex;align-items:center;justify-content:space-between;gap:18px;
+    padding:22px 24px;border:1px solid var(--line);border-radius:16px;
+    transition:border-color .25s, background .25s, transform .25s var(--ease);
+  }
+  .channel:hover{border-color:var(--accent);background:rgba(255,91,20,.06);transform:translateX(4px)}
+  .channel-l{display:flex;align-items:center;gap:14px}
+  .channel .ic{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;background:rgba(244,239,230,.06);color:var(--fg)}
+  .channel .label-s{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;color:var(--muted);letter-spacing:.1em}
+  .channel .val{font-size:17px;color:var(--fg);font-weight:500}
+  .channel .arr{color:var(--muted);transition:transform .25s, color .25s}
+  .channel:hover .arr{color:var(--accent);transform:translate(4px,-4px)}
+
+  form{display:grid;gap:14px;border:1px solid var(--line);border-radius:20px;padding:28px;background:var(--bg-2)}
+  .field{display:grid;gap:6px}
+  .field label{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;color:var(--muted);letter-spacing:.1em}
+  .field input, .field textarea, .field select{
+    width:100%;background:transparent;border:0;border-bottom:1px solid var(--line-strong);
+    color:var(--fg);font:inherit;padding:10px 0;outline:0;transition:border-color .25s;
+  }
+  .field input:focus, .field textarea:focus, .field select:focus{border-color:var(--accent)}
+  .field textarea{resize:vertical;min-height:90px}
+  form .btn{justify-self:start;margin-top:8px}
+  .form-status{font-size:14px;color:var(--muted);min-height:20px}
+  .form-status.ok{color:#7CE38B}
+  .form-status.err{color:#ff8585}
+
+  /* ── FOOTER ─────────────────────────────────────────── */
+  footer{
+    border-top:1px solid var(--line);padding:48px 0 32px;
+    color:var(--muted);font-size:14px;
+  }
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px;align-items:center}
+  .foot-links{display:flex;gap:18px;flex-wrap:wrap}
+  .foot a:hover{color:var(--fg)}
+
+  /* ── STICKY MOBILE CTA ──────────────────────────────── */
+  .sticky-cta{
+    position:fixed;left:16px;right:16px;bottom:16px;z-index:40;
+    display:flex;justify-content:center;pointer-events:none;
+    transition:opacity .3s var(--ease), transform .3s var(--ease);
+    opacity:0;transform:translateY(40px);
+  }
+  .sticky-cta.show{opacity:1;transform:translateY(0)}
+  .sticky-cta a{
+    pointer-events:auto;
+    background:var(--accent);color:#fff;
+    padding:14px 22px;border-radius:999px;font-weight:500;font-size:15px;
+    box-shadow:0 12px 30px -10px rgba(255,91,20,.6);
+    display:inline-flex;align-items:center;gap:10px;
+  }
+  @media(min-width:860px){.sticky-cta{display:none}}
+
+  /* ── FAQ ────────────────────────────────────────────── */
+  .faq{margin-top:48px;border-top:1px solid var(--line)}
+  .faq details{border-bottom:1px solid var(--line);padding:22px 0;cursor:pointer}
+  .faq summary{list-style:none;display:flex;justify-content:space-between;gap:24px;align-items:center;font-size:18px;font-weight:500}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary .plus{font-size:22px;color:var(--accent);transition:transform .3s}
+  .faq details[open] summary .plus{transform:rotate(45deg)}
+  .faq details p{margin-top:14px;color:var(--muted);max-width:70ch}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+    .reveal{opacity:1;transform:none}
+    .hero h1 .word > span{transform:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a href="#top" class="brand" aria-label="Canberra Web Co home">
+    <span class="dot" aria-hidden="true"></span>
+    <span><b>canberra</b> <small>web&nbsp;co.</small></span>
+  </a>
+  <nav class="nav-links" aria-label="Primary">
+    <a href="#work">Work</a>
+    <a href="#services">Services</a>
+    <a href="#process">Process</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <a href="#contact" class="nav-cta">
+    Get a free demo <span class="arr" aria-hidden="true">→</span>
+  </a>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top" aria-label="Intro">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="glow b" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="hero-meta">
+      <span class="pill mono"><span class="live" aria-hidden="true"></span> Booking May — June 2026</span>
+      <span class="mono">— Made in Canberra · ACT 2600 —</span>
+    </div>
+
+    <h1>
+      <span class="word"><span>More</span></span>
+      <span class="word"><span>customers.</span></span><br>
+      <span class="word"><span>Less</span></span>
+      <span class="word"><span class="serif it">faff.</span></span>
+    </h1>
+
+    <div class="hero-bottom">
+      <p class="hero-sub reveal d2">
+        <b>Beautiful, fast websites</b> for Canberra cafes, tradies, salons and gyms — built by one developer who actually picks up the phone. See a free demo of <em>your</em> site before you pay a cent.
+      </p>
+      <div class="hero-cta reveal d3">
+        <a class="btn btn-primary" href="#contact">Get my free demo <span class="arr" aria-hidden="true">↗</span></a>
+        <a class="btn btn-ghost" href="#work">See the work</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="strip" aria-label="Trust">
+  <div class="marquee" aria-hidden="true">
+    <span>Cafes</span><span>Tradies</span><span>Salons</span><span>Gyms</span><span>Studios</span><span>Local makers</span><span>Mobile-first</span><span>Made in Canberra</span>
+    <span>Cafes</span><span>Tradies</span><span>Salons</span><span>Gyms</span><span>Studios</span><span>Local makers</span><span>Mobile-first</span><span>Made in Canberra</span>
+  </div>
+</div>
+
+<!-- WHY -->
+<section id="why" aria-label="Why work with me">
+  <div class="wrap">
+    <div class="label reveal"><span class="num">01 — Why me</span></div>
+    <h2 class="reveal">A real person. <span class="it">Not an agency,</span> not a template farm.</h2>
+
+    <div class="why">
+      <p class="reveal d1">
+        You'll work directly with one developer based in Canberra. No account managers, no offshore handoffs, no ten-page contracts. Just clear pricing, a real demo on day one, and a website you'll actually be proud to send people to.
+      </p>
+      <ul class="why-list reveal d2" style="list-style:none">
+        <li class="why-item">
+          <span class="n">/01</span>
+          <div>
+            <h3>You see it before you buy it</h3>
+            <p>Tell me about your business and I'll build a free demo homepage. If you don't love it, we walk away. No invoice, no awkwardness.</p>
+          </div>
+        </li>
+        <li class="why-item">
+          <span class="n">/02</span>
+          <div>
+            <h3>Fast, mobile-first, made to convert</h3>
+            <p>Loads in under two seconds, looks sharp on every phone, and is built around the one thing that matters — turning visitors into bookings.</p>
+          </div>
+        </li>
+        <li class="why-item">
+          <span class="n">/03</span>
+          <div>
+            <h3>Local, no jargon, easy to update</h3>
+            <p>I'm five minutes away in Canberra. Text me, DM me, swing by for a coffee. Updating your menu or hours takes a message — not a support ticket.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- DELIVERABLES -->
+<section id="services" aria-label="What you get">
+  <div class="wrap">
+    <div class="label reveal"><span class="num">02 — What you get</span></div>
+    <h2 class="reveal">Everything a small business needs. <span class="it">Nothing it doesn't.</span></h2>
+
+    <div class="deliv">
+      <div class="card reveal d1">
+        <div class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 8h18M8 21h8"/></svg></div>
+        <h3>A homepage that converts</h3>
+        <p>Hero, offer, social proof, contact — laid out so a visitor knows what you do and books in under 30 seconds.</p>
+      </div>
+      <div class="card reveal d1">
+        <div class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></div>
+        <h3>Mobile-first, every time</h3>
+        <p>Designed on a phone first because that's where 80% of your customers find you. Thumb-friendly buttons, clean stacks, no horizontal scroll.</p>
+      </div>
+      <div class="card reveal d2">
+        <div class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
+        <h3>Found on Google</h3>
+        <p>Proper SEO basics, meta tags, structured data, fast load times — so people searching for your suburb find you, not a competitor.</p>
+      </div>
+      <div class="card reveal d2">
+        <div class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/></svg></div>
+        <h3>Booking & contact built in</h3>
+        <p>Instagram DM button, click-to-call, Google Maps, contact form, online booking link — whichever you actually use.</p>
+      </div>
+      <div class="card reveal d3">
+        <div class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v20M2 12h20"/></svg></div>
+        <h3>Easy edits, forever</h3>
+        <p>Need to swap a menu, photo or opening hours? Send a text. Quick edits are included for the first month.</p>
+      </div>
+      <div class="card reveal d3">
+        <div class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4l16 16M4 20L20 4"/></svg></div>
+        <h3>No lock-in</h3>
+        <p>You own your domain and your content. If you ever want to leave, I hand it all over — no drama.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="work" aria-label="Example work">
+  <div class="wrap">
+    <div class="label reveal"><span class="num">03 — Example work</span></div>
+    <h2 class="reveal">Recent <span class="it">demo builds</span> for local businesses.</h2>
+    <p class="reveal d1" style="margin-top:16px">A few sample homepages I've built to show how a Canberra cafe, salon or studio site can look. Real client work shown with permission.</p>
+
+    <div class="work-grid">
+      <a class="work work-tall reveal d1" href="#contact" aria-label="Demo: Braddon cafe">
+        <span class="demo-badge">Demo · Cafe</span>
+        <img src="assets/work/cafe-demo.png" alt="Demo homepage for a Braddon cafe" loading="lazy" />
+        <div class="meta">
+          <div>
+            <span class="tag">Braddon · Cafe</span>
+            <h3>Konk &amp; Co.</h3>
+          </div>
+          <span class="arr serif italic" style="font-size:24px">view ↗</span>
+        </div>
+      </a>
+      <a class="work reveal d2" href="#contact" aria-label="Demo: Canberra creative studio">
+        <span class="demo-badge">Demo · Studio</span>
+        <img src="assets/work/studio-demo.jpg" alt="Demo homepage for a Canberra creative studio" loading="lazy" />
+        <div class="meta">
+          <div>
+            <span class="tag">Kingston · Studio</span>
+            <h3>Lake Burley Studio</h3>
+          </div>
+          <span class="arr serif italic" style="font-size:24px">view ↗</span>
+        </div>
+      </a>
+      <a class="work reveal d3" href="#contact" aria-label="Demo: local trades">
+        <span class="demo-badge">Demo · Trades</span>
+        <img src="assets/work/local-business-demo.avif" alt="Demo homepage for a local Canberra business" loading="lazy" />
+        <div class="meta">
+          <div>
+            <span class="tag">Belconnen · Trades</span>
+            <h3>Capital Plumbing Co.</h3>
+          </div>
+          <span class="arr serif italic" style="font-size:24px">view ↗</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" aria-label="How it works">
+  <div class="wrap">
+    <div class="label reveal"><span class="num">04 — Process</span></div>
+    <h2 class="reveal">Three steps. <span class="it">No surprises.</span></h2>
+
+    <div class="process">
+      <div class="step reveal d1">
+        <h3>We chat</h3>
+        <p>15-minute call or DM. Tell me what your business does, who your customers are, and what you wish your current site (or Facebook page) actually did.</p>
+      </div>
+      <div class="step reveal d2">
+        <h3>I build a free demo</h3>
+        <p>Within a few days, you get a real, clickable homepage made for <em>your</em> business — branding, copy, photos, the lot. No mockups. The real thing.</p>
+      </div>
+      <div class="step reveal d3">
+        <h3>You launch — or you don't</h3>
+        <p>Love it? We finalise the rest of the site and go live. Don't love it? You owe nothing, and you keep the chat. That's it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BIG CTA -->
+<section aria-label="Get started">
+  <div class="wrap">
+    <div class="bigcta reveal">
+      <span class="stamp" aria-hidden="true">FREE DEMO · CANBERRA · FREE DEMO · CANBERRA ·</span>
+      <h2>Free demo of <span class="it">your</span> website. No invoice unless you love it.</h2>
+      <p>Takes about 60 seconds to send your details. I'll come back within a day with a few questions and a rough demo by the end of the week.</p>
+      <div class="row">
+        <a class="btn btn-primary" href="#contact">Start my free demo <span class="arr" aria-hidden="true">↗</span></a>
+        <a class="btn btn-ghost" href="https://instagram.com/canberrawebco" target="_blank" rel="noopener">DM on Instagram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" aria-label="Contact">
+  <div class="wrap">
+    <div class="label reveal"><span class="num">05 — Contact</span></div>
+    <div class="contact-grid">
+      <div class="contact-side reveal">
+        <h2>Let's <span class="it">build it.</span></h2>
+        <p style="margin-top:18px">Pick whichever feels easiest. DMs are the fastest — usually a reply within an hour during the day.</p>
+
+        <div class="contact-channels">
+          <a class="channel" href="https://instagram.com/canberrawebco" target="_blank" rel="noopener" aria-label="Instagram">
+            <span class="channel-l">
+              <span class="ic" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+              </span>
+              <span>
+                <span class="label-s">Instagram DM</span><br>
+                <span class="val">@canberrawebco</span>
+              </span>
+            </span>
+            <span class="arr" aria-hidden="true">↗</span>
+          </a>
+          <a class="channel" href="mailto:hello@canberrawebco.com.au" aria-label="Email">
+            <span class="channel-l">
+              <span class="ic" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+              </span>
+              <span>
+                <span class="label-s">Email</span><br>
+                <span class="val">hello@canberrawebco.com.au</span>
+              </span>
+            </span>
+            <span class="arr" aria-hidden="true">↗</span>
+          </a>
+          <a class="channel" href="tel:+61400000000" aria-label="Phone">
+            <span class="channel-l">
+              <span class="ic" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </span>
+              <span>
+                <span class="label-s">Call / Text</span><br>
+                <span class="val">Available on request</span>
+              </span>
+            </span>
+            <span class="arr" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+
+      <form name="demo-request" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="demo-form" class="reveal d1">
+        <input type="hidden" name="form-name" value="demo-request" />
+        <p style="display:none"><label>Don't fill this out: <input name="bot-field" /></label></p>
+
+        <div class="field">
+          <label for="biz">Business name</label>
+          <input id="biz" name="business" type="text" required autocomplete="organization" placeholder="e.g. Braddon Coffee Co." />
+        </div>
+
+        <div class="field">
+          <label for="type">What you do</label>
+          <select id="type" name="business_type" required>
+            <option value="">Pick one…</option>
+            <option>Cafe / Restaurant</option>
+            <option>Trades (plumber, sparky, builder)</option>
+            <option>Salon / Beauty</option>
+            <option>Gym / Fitness studio</option>
+            <option>Other small business</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@yourbusiness.com.au" />
+        </div>
+
+        <div class="field">
+          <label for="msg">One thing you'd love your site to do</label>
+          <textarea id="msg" name="message" placeholder="e.g. Get more bookings on weekends" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Request my free demo <span class="arr" aria-hidden="true">↗</span></button>
+        <div class="form-status" role="status" aria-live="polite" id="form-status"></div>
+      </form>
+    </div>
+
+    <div class="faq reveal" style="margin-top:96px">
+      <details>
+        <summary>Is the demo really free? <span class="plus" aria-hidden="true">+</span></summary>
+        <p>Yes. You'll get a real homepage built specifically for your business. If you don't want to go further, you owe nothing. I do this because it's faster than convincing you with words.</p>
+      </details>
+      <details>
+        <summary>How much does a full website cost? <span class="plus" aria-hidden="true">+</span></summary>
+        <p>Most small business sites are between $900 and $1,800 AUD all-in. There's a small monthly hosting + small-edits plan from $25/month — or you can take the code and host it yourself.</p>
+      </details>
+      <details>
+        <summary>How long does it take? <span class="plus" aria-hidden="true">+</span></summary>
+        <p>Demo within a week. Full site usually 1–2 weeks after that, depending on how quickly you can send through photos and copy.</p>
+      </details>
+      <details>
+        <summary>Do you only work with Canberra businesses? <span class="plus" aria-hidden="true">+</span></summary>
+        <p>Mostly, yes. Being local means I can drop in for a coffee and actually understand the area. Happy to chat to nearby Queanbeyan and surrounds too.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Canberra Web Co. — Built locally, with care.</span>
+    <div class="foot-links">
+      <a href="https://instagram.com/canberrawebco" target="_blank" rel="noopener">Instagram</a>
+      <a href="mailto:hello@canberrawebco.com.au">Email</a>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </div>
+</footer>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-cta" id="sticky">
+  <a href="#contact">Get free demo <span aria-hidden="true">↗</span></a>
+</div>
+
+<script>
+  // Hero entrance
+  requestAnimationFrame(() => {
+    document.querySelector('.hero').classList.add('in');
+  });
+
+  // Reveal on scroll (IntersectionObserver)
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.12, rootMargin: '0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Nav scroll state
+  const nav = document.getElementById('nav');
+  const sticky = document.getElementById('sticky');
+  const onScroll = () => {
+    const y = window.scrollY;
+    nav.classList.toggle('scrolled', y > 12);
+    sticky.classList.toggle('show', y > 600 && y < document.body.scrollHeight - window.innerHeight - 600);
+  };
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // Form AJAX
+  const form = document.getElementById('demo-form');
+  const status = document.getElementById('form-status');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    status.textContent = 'Sending…';
+    status.className = 'form-status';
+    try {
+      const res = await fetch('/', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: new URLSearchParams(new FormData(form)).toString(),
+      });
+      if (!res.ok) throw new Error('Network response was not ok');
+      form.reset();
+      status.textContent = 'Got it — I\'ll be in touch within a day. ✦';
+      status.className = 'form-status ok';
+    } catch (err) {
+      status.textContent = 'Hmm, something went wrong. Try emailing hello@canberrawebco.com.au instead.';
+      status.className = 'form-status err';
+    }
+  });
+</script>
+</body>
+</html>
